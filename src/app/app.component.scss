@@ -1,0 +1,17 @@
+$break-small: 480px;
+$break-large: 1280px;
+
+.container{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-content {
+  width: 350px;
+  @media screen and (max-width: $break-small) {
+    width: 100%;
+  }
+}

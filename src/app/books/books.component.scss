@@ -1,0 +1,17 @@
+.add-new {
+  position: relative;
+  top: 90%;
+  left: 90%
+}
+
+
+.add-book {
+  .addBookForm {
+    display: flex;
+    flex-direction: column;
+
+    &>* {
+      widows: 100%;
+    }
+  }
+}

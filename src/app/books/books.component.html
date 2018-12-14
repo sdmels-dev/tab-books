@@ -1,0 +1,51 @@
+<div class="add-book">
+  <h3>Add Book</h3>
+  <form name="addNewForm"
+    class="addBookForm"  #formDirective="ngForm"
+    [formGroup]="addNewBookForm" (ngSubmit)="addBook(formDirective)" novalidate>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" #titleRef formControlName="title" maxlength="30" name="title">
+      <mat-hint align="end">{{titleRef.value?.length || 0}}/30</mat-hint>
+      <mat-error *ngIf="addNewBookForm.get('title').hasError('required')">
+        Title is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select placeholder="Select" formControlName="category" name="category">
+        <mat-option value="null" disabled="true">Select one</mat-option>
+        <mat-option value="drama">Drama</mat-option>
+        <mat-option value="comedy">Comedy</mat-option>
+        <mat-option value="sport">Sport</mat-option>
+      </mat-select>
+      <mat-error *ngIf="addNewBookForm.get('category').hasError('required')">
+        Category is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea class="description" matInput placeholder="Textarea" formControlName="description" name="description"></textarea>
+      <mat-error *ngIf="addNewBookForm.get('description').hasError('required')">
+        Description is required.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" [disabled]="addNewBookForm.invalid" type="submit">Add</button>
+  </form>
+</div>
+
+<div class="book-list" *ngIf="!!books">
+  <mat-list>
+    <h3 mat-subheading>Book List ({{books?.length}})</h3>
+    <mat-list-item *ngFor="let book of books"  @fade @slide>
+      <mat-icon matListIcon>library_books</mat-icon>
+      <h3 matLine> {{book.title}} ({{book.category}})</h3>
+      <p matLine>
+        {{book.description}}
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>
